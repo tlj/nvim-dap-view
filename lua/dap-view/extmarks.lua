@@ -13,8 +13,7 @@ M.copy_extmarks = function(src_bufnr, src_row, target_bufnr, target_row, col_off
         -1,
         { src_row, 0 },
         { src_row + 1, 0 },
-        -- TODO perhaps it would be better to also filter by "highlight = true"
-        { details = true }
+        { details = true, type = "highlight" }
     )
 
     for _, extmark in ipairs(extmarks) do

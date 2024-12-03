@@ -2,6 +2,7 @@ local util = require("dap-view.util")
 local state = require("dap-view.state")
 local vendor = require("dap-view.breakpoints.vendor")
 local extmarks = require("dap-view.extmarks")
+local treesitter = require("dap-view.treesitter")
 
 local api = vim.api
 
@@ -66,6 +67,7 @@ local populate_buf_with_breakpoints = function()
 
                 local col_offset = #relative_path + #tostring(entry.lnum) + 2
 
+                treesitter.copy_highlights(buf, entry.lnum - 1, state.bufnr, line_count, col_offset)
                 extmarks.copy_extmarks(buf, entry.lnum - 1, state.bufnr, line_count, col_offset)
 
                 highlight_file_name_and_line_number(

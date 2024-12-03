@@ -32,11 +32,6 @@ local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
             lnum_start,
             { end_col = lnum_start + len_lnum, hl_group = "qfLineNr" }
         )
-
-        -- TODO highlight the actual line of code using treesitter
-        -- Since the "text" property also contains some extra text (when using the QuickFix List)
-        -- eg, ", Condition" if breakpoint has a condition
-        -- We have to not consider the extra text when highlighting
     end
 end
 

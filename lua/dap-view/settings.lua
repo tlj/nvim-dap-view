@@ -3,18 +3,27 @@ local state = require("dap-view.state")
 local M = {}
 
 M.set_options = function()
-    vim.wo[state.winnr][0].scrolloff = 0
-    vim.wo[state.winnr][0].wrap = false
-    vim.wo[state.winnr][0].number = false
-    vim.wo[state.winnr][0].relativenumber = false
-    vim.wo[state.winnr][0].winfixheight = true
-    vim.wo[state.winnr][0].cursorlineopt = "line"
-    vim.wo[state.winnr][0].cursorline = true
-    vim.wo[state.winnr][0].statuscolumn = ""
-    vim.wo[state.winnr][0].foldcolumn = "0"
+    local win = vim.wo[state.winnr][0]
+    win.scrolloff = 0
+    win.wrap = false
+    win.number = false
+    win.relativenumber = false
+    win.winfixheight = true
+    win.cursorlineopt = "line"
+    win.cursorline = true
+    win.statuscolumn = ""
+    win.foldcolumn = "0"
+    win.winfixbuf = true
 
-    vim.bo[state.bufnr].buftype = "nofile"
-    vim.bo[state.bufnr].swapfile = false
+    local buf = vim.bo[state.bufnr]
+    buf.buftype = "nofile"
+    buf.swapfile = false
+end
+
+M.set_keymaps = function()
+    vim.keymap.set("n", "<CR>", function()
+        require("dap-view.breakpoints.actions")._jump_to_breakpoint()
+    end, { buffer = state.bufnr })
 end
 
 return M

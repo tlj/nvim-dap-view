@@ -5,6 +5,8 @@ local settings = require("dap-view.settings")
 local events = require("dap-view.events")
 local globals = require("dap-view.globals")
 
+local api = vim.api
+
 ---@class Actions
 local M = {}
 
@@ -19,11 +21,11 @@ end
 
 M.close = function()
     if state.winnr then
-        vim.api.nvim_win_close(state.winnr, true)
+        api.nvim_win_close(state.winnr, true)
         state.winnr = nil
     end
     if state.bufnr then
-        vim.api.nvim_buf_delete(state.bufnr, { force = true })
+        api.nvim_buf_delete(state.bufnr, { force = true })
         state.bufnr = nil
     end
 end
@@ -35,7 +37,7 @@ end
 M.open = function(config)
     M.close()
 
-    local bufnr = vim.api.nvim_create_buf(false, false)
+    local bufnr = api.nvim_create_buf(false, false)
 
     assert(bufnr ~= 0, "Failed to create dap-view buffer")
 
@@ -44,11 +46,11 @@ M.open = function(config)
     -- TODO move this to close?
     local prev_buf = util.get_buf(globals.MAIN_BUF_NAME)
     if prev_buf then
-        vim.api.nvim_buf_delete(prev_buf, { force = true })
+        api.nvim_buf_delete(prev_buf, { force = true })
     end
-    vim.api.nvim_buf_set_name(bufnr, globals.MAIN_BUF_NAME)
+    api.nvim_buf_set_name(bufnr, globals.MAIN_BUF_NAME)
 
-    local winnr = vim.api.nvim_open_win(bufnr, false, {
+    local winnr = api.nvim_open_win(bufnr, false, {
         split = "below",
         win = 0,
         height = 15,
@@ -59,6 +61,7 @@ M.open = function(config)
     state.winnr = winnr
 
     settings.set_options()
+    settings.set_keymaps()
 
     -- TODO perhaps there's a better spot to handle
     -- but currently only works if it's here
@@ -68,7 +71,7 @@ M.open = function(config)
     winbar.set_winbar(winbar_config.default_section, winbar_config.sections)
 
     -- Properly handle exiting the window
-    vim.api.nvim_create_autocmd({ "BufDelete", "WinClosed" }, {
+    api.nvim_create_autocmd({ "BufDelete", "WinClosed" }, {
         buffer = state.bufnr,
         once = true,
         callback = M.close,

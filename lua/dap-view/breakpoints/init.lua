@@ -81,6 +81,8 @@ local populate_buf_with_breakpoints = function()
     api.nvim_buf_set_lines(state.bufnr, -2, -1, false, {})
 end
 
-M.show = function() populate_buf_with_breakpoints() end
+M.show = function()
+    populate_buf_with_breakpoints()
+end
 
 return M

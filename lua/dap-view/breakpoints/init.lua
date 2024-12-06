@@ -1,3 +1,4 @@
+local winbar = require("dap-view.winbar")
 local util = require("dap-view.util")
 local state = require("dap-view.state")
 local vendor = require("dap-view.breakpoints.vendor")
@@ -82,6 +83,8 @@ local populate_buf_with_breakpoints = function()
 end
 
 M.show = function()
+    state.current_section = "breakpoints"
+    winbar.update_winbar(state.current_section)
     populate_buf_with_breakpoints()
 end
 

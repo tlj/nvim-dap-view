@@ -45,12 +45,10 @@ M._jump_to_breakpoint = function()
         end)
 
     if not prev_or_new_window then
-        local max_height = api.nvim_win_get_height(state.winnr)
-
         prev_or_new_window = api.nvim_open_win(0, true, {
             split = "above",
             win = 0,
-            height = max_height - 15,
+            height = vim.o.lines - 15,
         })
     end
 

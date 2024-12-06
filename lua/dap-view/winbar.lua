@@ -1,4 +1,5 @@
 local state = require("dap-view.state")
+local setup = require("dap-view.setup")
 
 local M = {}
 
@@ -6,36 +7,40 @@ local winbar_info = {
     breakpoints = {
         desc = "Breakpoints (B)",
         keymap = "B",
-        action = function() require("dap-view.breakpoints.init").show() end,
+        action = function()
+            require("dap-view.breakpoints.init").show()
+        end,
     },
     exceptions = {
         desc = "Exceptions (E)",
         keymap = "E",
+        action = function()
+            require("dap-view.exceptions").show()
+        end,
     },
     watches = {
         desc = "Watches (W)",
         keymap = "W",
+        action = function()
+            print("foo")
+        end,
     },
 }
 
 local set_winbar_action_keymaps = function()
     if state.bufnr then
         for _, value in pairs(winbar_info) do
-            vim.keymap.set(
-                "n",
-                value.keymap,
-                function() value.action() end,
-                { buffer = state.bufnr }
-            )
+            vim.keymap.set("n", value.keymap, function()
+                value.action()
+            end, { buffer = state.bufnr })
         end
     end
 end
 
 ---@param selected_section SectionType
----@param sections SectionType[]
-local set_winbar_opt = function(selected_section, sections)
+local set_winbar_opt = function(selected_section)
     if state.winnr then
-        local winbar = sections
+        local winbar = setup.config.winbar.sections
         local winbar_title = {}
 
         for _, key in ipairs(winbar) do
@@ -60,12 +65,15 @@ local set_winbar_opt = function(selected_section, sections)
     end
 end
 
----@param selected_section SectionType
----@param sections SectionType[]
-M.set_winbar = function(selected_section, sections)
-    set_winbar_opt(selected_section, sections)
+---@param selected_section? SectionType
+M.set_winbar = function(selected_section)
     set_winbar_action_keymaps()
     winbar_info[selected_section].action()
+end
+
+---@param selected_section SectionType
+M.update_winbar = function(selected_section)
+    set_winbar_opt(selected_section)
 end
 
 return M

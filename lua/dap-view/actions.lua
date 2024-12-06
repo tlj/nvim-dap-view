@@ -1,4 +1,5 @@
 local winbar = require("dap-view.winbar")
+local setup = require("dap-view.setup")
 local util = require("dap-view.util")
 local state = require("dap-view.state")
 local settings = require("dap-view.settings")
@@ -10,12 +11,11 @@ local api = vim.api
 ---@class Actions
 local M = {}
 
----@param config Config
-M.toggle = function(config)
+M.toggle = function()
     if state.bufnr then
         M.close()
     else
-        M.open(config)
+        M.open()
     end
 end
 
@@ -33,8 +33,7 @@ end
 -- TODO showing breakpoint info may be outdated if not in a session
 -- we could use another approach to track breakpoint (instead of looking at the QF list)
 
----@param config Config
-M.open = function(config)
+M.open = function()
     M.close()
 
     local bufnr = api.nvim_create_buf(false, false)
@@ -67,8 +66,8 @@ M.open = function(config)
     -- but currently only works if it's here
     events.listen_breakpoints()
 
-    local winbar_config = config.winbar
-    winbar.set_winbar(winbar_config.default_section, winbar_config.sections)
+    state.current_section = setup.config.winbar.default_section
+    winbar.set_winbar(state.current_section)
 
     -- Properly handle exiting the window
     api.nvim_create_autocmd({ "BufDelete", "WinClosed" }, {

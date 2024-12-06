@@ -49,7 +49,8 @@ local populate_buf_with_breakpoints = function()
         local line_count = 0
 
         for buf, buf_entries in pairs(breakpoints) do
-            local relative_path = util.get_relative_path(buf)
+            local filename = api.nvim_buf_get_name(buf)
+            local relative_path = vim.fn.fnamemodify(filename, ":.")
 
             for _, entry in pairs(buf_entries) do
                 local line_content = {}

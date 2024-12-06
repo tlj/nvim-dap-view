@@ -14,17 +14,4 @@ M.get_buf = function(buf_name)
     return nil
 end
 
----@param bufnr integer
-M.get_relative_path = function(bufnr)
-    local filepath = vim.api.nvim_buf_get_name(bufnr)
-
-    local relative_path = filepath:gsub(vim.fn.getcwd() .. "/", "")
-
-    if relative_path == filepath then
-        return filepath
-    end
-
-    return relative_path
-end
-
 return M

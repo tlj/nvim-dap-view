@@ -1,7 +1,5 @@
 local M = {}
 
-local state = require("dap-view.state")
-
 local api = vim.api
 
 M._jump_to_breakpoint = function()

@@ -71,9 +71,10 @@ M.set_winbar = function(selected_section)
     winbar_info[selected_section].action()
 end
 
----@param selected_section SectionType
-M.update_winbar = function(selected_section)
-    set_winbar_opt(selected_section)
+---@param section_name SectionType
+M.update_winbar = function(section_name)
+    state.current_section = section_name
+    set_winbar_opt(state.current_section)
 end
 
 return M

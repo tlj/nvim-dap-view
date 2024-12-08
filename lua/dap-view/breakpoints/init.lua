@@ -1,6 +1,6 @@
 local winbar = require("dap-view.winbar")
-local util = require("dap-view.util")
 local state = require("dap-view.state")
+local globals = require("dap-view.globals")
 local vendor = require("dap-view.breakpoints.vendor")
 local extmarks = require("dap-view.extmarks")
 local treesitter = require("dap-view.treesitter")
@@ -20,7 +20,7 @@ local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
 
         api.nvim_buf_set_extmark(
             state.bufnr,
-            M.namespace,
+            globals.NAMESPACE,
             row,
             0,
             { end_col = len_path, hl_group = "qfFileName" }
@@ -28,7 +28,7 @@ local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
 
         api.nvim_buf_set_extmark(
             state.bufnr,
-            M.namespace,
+            globals.NAMESPACE,
             row,
             lnum_start,
             { end_col = lnum_start + len_lnum, hl_group = "qfLineNr" }
@@ -76,16 +76,15 @@ local populate_buf_with_breakpoints = function()
                 line_count = line_count + 1
             end
         end
-    end
 
-    -- TODO: this should not be happening
-    -- Remove the last line, as it's empty
-    api.nvim_buf_set_lines(state.bufnr, -2, -1, false, {})
+        -- Remove the last line, as it's empty (for some reason)
+        api.nvim_buf_set_lines(state.bufnr, -2, -1, false, {})
+    end
 end
 
 M.show = function()
-    state.current_section = "breakpoints"
-    winbar.update_winbar(state.current_section)
+    winbar.update_winbar("breakpoints")
+
     populate_buf_with_breakpoints()
 end
 

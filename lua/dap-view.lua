@@ -1,3 +1,6 @@
+-- Connect hooks to listen to DAP events
+require("dap-view.events")
+
 local actions = require("dap-view.actions")
 
 local M = {}

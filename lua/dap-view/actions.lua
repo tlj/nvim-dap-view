@@ -3,7 +3,6 @@ local setup = require("dap-view.setup")
 local util = require("dap-view.util")
 local state = require("dap-view.state")
 local settings = require("dap-view.settings")
-local events = require("dap-view.events")
 local globals = require("dap-view.globals")
 
 local api = vim.api
@@ -62,11 +61,7 @@ M.open = function()
     settings.set_options()
     settings.set_keymaps()
 
-    -- TODO perhaps there's a better spot to handle
-    -- but currently only works if it's here
-    events.listen_breakpoints()
-
-    state.current_section = setup.config.winbar.default_section
+    state.current_section = state.current_section or setup.config.winbar.default_section
     winbar.set_winbar(state.current_section)
 
     -- Properly handle exiting the window

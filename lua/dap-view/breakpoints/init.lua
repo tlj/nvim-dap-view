@@ -9,7 +9,6 @@ local api = vim.api
 
 local M = {}
 
-M.namespace = api.nvim_create_namespace("dap-view")
 
 ---@param row integer
 ---@param len_path integer
@@ -64,8 +63,8 @@ local populate_buf_with_breakpoints = function()
 
                 local col_offset = #relative_path + #tostring(entry.lnum) + 2
 
-                treesitter.copy_highlights(buf, entry.lnum - 1, state.bufnr, line_count, col_offset)
-                extmarks.copy_extmarks(buf, entry.lnum - 1, state.bufnr, line_count, col_offset)
+                treesitter.copy_highlights(buf, entry.lnum - 1, line_count, col_offset)
+                extmarks.copy_extmarks(buf, entry.lnum - 1, line_count, col_offset)
 
                 highlight_file_name_and_line_number(
                     line_count,

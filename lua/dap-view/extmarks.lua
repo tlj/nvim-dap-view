@@ -1,13 +1,15 @@
+local globals = require("dap-view.globals")
+local state = require("dap-view.state")
+
 local M = {}
 
 local api = vim.api
 
 ---@param src_bufnr integer
 ---@param src_row integer
----@param target_bufnr integer
 ---@param target_row integer
 ---@param col_offset integer
-M.copy_extmarks = function(src_bufnr, src_row, target_bufnr, target_row, col_offset)
+M.copy_extmarks = function(src_bufnr, src_row, target_row, col_offset)
     local extmarks = api.nvim_buf_get_extmarks(
         src_bufnr,
         -1,
@@ -27,8 +29,8 @@ M.copy_extmarks = function(src_bufnr, src_row, target_bufnr, target_row, col_off
 
         if opts then
             api.nvim_buf_set_extmark(
-                target_bufnr,
-                opts.ns_id or M.namespace,
+                state.bufnr,
+                opts.ns_id or globals.NAMESPACE,
                 target_row,
                 col + col_offset,
                 {

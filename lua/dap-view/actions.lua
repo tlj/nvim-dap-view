@@ -1,8 +1,8 @@
-local winbar = require("dap-view.winbar")
+local winbar = require("dap-view.options.winbar")
 local setup = require("dap-view.setup")
 local util = require("dap-view.util")
 local state = require("dap-view.state")
-local settings = require("dap-view.settings")
+local settings = require("dap-view.options.settings")
 local globals = require("dap-view.globals")
 
 local api = vim.api

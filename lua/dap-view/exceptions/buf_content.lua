@@ -1,4 +1,4 @@
-local winbar = require("dap-view.winbar")
+local winbar = require("dap-view.options.winbar")
 local globals = require("dap-view.globals")
 local state = require("dap-view.state")
 

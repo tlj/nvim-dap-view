@@ -22,7 +22,11 @@ end
 
 M.set_keymaps = function()
     vim.keymap.set("n", "<CR>", function()
-        require("dap-view.breakpoints.actions")._jump_to_breakpoint()
+        if state.current_section == "breakpoints" then
+            require("dap-view.breakpoints.actions")._jump_to_breakpoint()
+        elseif state.current_section == "exceptions" then
+            require("dap-view.exceptions.actions")._toggle_exception_filter()
+        end
     end, { buffer = state.bufnr })
 end
 

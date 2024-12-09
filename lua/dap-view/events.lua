@@ -2,26 +2,14 @@ local dap = require("dap")
 local state = require("dap-view.state")
 local breakpoints = require("dap-view.breakpoints")
 local actions = require("dap-view.actions")
+local exceptions = require("dap-view.exceptions")
 
 dap.listeners.after.setBreakpoints["dap-view"] = function()
     breakpoints.show()
 end
 
 dap.listeners.after.launch["dap-view"] = function()
-    if state.exceptions_options == nil then
-        return
-    end
-
-    local filters = vim.iter(state.exceptions_options)
-        :filter(function(x)
-            return x.enabled
-        end)
-        :map(function(x)
-            return x.exception_filter.filter
-        end)
-        :totable()
-
-    dap.set_exception_breakpoints(filters)
+    exceptions.update_exception_breakpoints_filters()
 end
 
 dap.listeners.after.initialize["dap-view"] = function(session, _)

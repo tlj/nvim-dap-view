@@ -15,7 +15,7 @@ local winbar_info = {
         desc = "Exceptions (E)",
         keymap = "E",
         action = function()
-            require("dap-view.exceptions").show()
+            require("dap-view.exceptions.buffer").show()
         end,
     },
     watches = {

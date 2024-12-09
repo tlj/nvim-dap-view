@@ -1,5 +1,5 @@
 ---@class ExceptionsOption
----@field exception_filter dap.ExceptionBreakpointsFilter[]
+---@field exception_filter dap.ExceptionBreakpointsFilter
 ---@field enabled boolean
 
 ---@class State

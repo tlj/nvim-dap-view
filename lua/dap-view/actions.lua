@@ -7,7 +7,6 @@ local globals = require("dap-view.globals")
 
 local api = vim.api
 
----@class Actions
 local M = {}
 
 M.toggle = function()
@@ -29,9 +28,6 @@ M.close = function()
     end
 end
 
--- TODO showing breakpoint info may be outdated if not in a session
--- we could use another approach to track breakpoint (instead of looking at the QF list)
-
 M.open = function()
     M.close()
 
@@ -41,11 +37,11 @@ M.open = function()
 
     state.bufnr = bufnr
 
-    -- TODO move this to close?
     local prev_buf = util.get_buf(globals.MAIN_BUF_NAME)
     if prev_buf then
         api.nvim_buf_delete(prev_buf, { force = true })
     end
+
     api.nvim_buf_set_name(bufnr, globals.MAIN_BUF_NAME)
 
     local winnr = api.nvim_open_win(bufnr, false, {

@@ -30,7 +30,23 @@ local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
             globals.NAMESPACE,
             row,
             lnum_start,
-            { end_col = lnum_start + len_lnum, hl_group = "qfLineNr" }
+            { end_col = lnum_end, hl_group = "qfLineNr" }
+        )
+
+        api.nvim_buf_set_extmark(
+            state.bufnr,
+            globals.NAMESPACE,
+            row,
+            lnum_start - 1,
+            { end_col = lnum_start, hl_group = "Comment" }
+        )
+
+        api.nvim_buf_set_extmark(
+            state.bufnr,
+            globals.NAMESPACE,
+            row,
+            lnum_end,
+            { end_col = lnum_end + 1, hl_group = "Comment" }
         )
     end
 end

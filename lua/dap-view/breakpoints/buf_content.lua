@@ -16,6 +16,7 @@ local M = {}
 local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
     if state.bufnr then
         local lnum_start = len_path + 1
+        local lnum_end = lnum_start + len_lnum
 
         api.nvim_buf_set_extmark(
             state.bufnr,

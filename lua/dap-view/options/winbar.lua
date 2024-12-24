@@ -5,21 +5,21 @@ local M = {}
 
 local winbar_info = {
     breakpoints = {
-        desc = "Breakpoints (B)",
+        desc = "[B]reakpoints",
         keymap = "B",
         action = function()
             require("dap-view.breakpoints.buf_content").show()
         end,
     },
     exceptions = {
-        desc = "Exceptions (E)",
+        desc = "[E]xceptions",
         keymap = "E",
         action = function()
             require("dap-view.exceptions.buf_content").show()
         end,
     },
     watches = {
-        desc = "Watches (W)",
+        desc = "[W]atches",
         keymap = "W",
         action = function()
             print("foo")
@@ -59,7 +59,7 @@ local set_winbar_opt = function(selected_section)
             end
         end
 
-        local value = table.concat(winbar_title, " ")
+        local value = table.concat(winbar_title, "")
 
         vim.wo[state.winnr][0].winbar = value
     end

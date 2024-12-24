@@ -20,10 +20,10 @@ dap.listeners.after.initialize["dap-view"] = function(session, _)
         :totable()
 end
 
-dap.listeners.before.event_terminated.dapui_config = function()
+dap.listeners.before.event_terminated["dap-view"] = function()
     actions.close()
 end
 
-dap.listeners.before.event_exited.dapui_config = function()
+dap.listeners.before.event_exited["dap-view"] = function()
     actions.close()
 end

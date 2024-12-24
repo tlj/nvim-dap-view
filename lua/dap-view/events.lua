@@ -3,7 +3,12 @@ local state = require("dap-view.state")
 local breakpoints = require("dap-view.breakpoints.buf_content")
 local actions = require("dap-view.actions")
 local exceptions = require("dap-view.exceptions")
+local term = require("dap-view.term.init")
 local globals = require("dap-view.globals")
+
+dap.listeners.before.initialize[globals.SUBSCRIPTION_ID] = function()
+    term.term_buf_win_init()
+end
 
 dap.listeners.after.setBreakpoints[globals.SUBSCRIPTION_ID] = function()
     breakpoints.show()

@@ -1,6 +1,7 @@
 local winbar = require("dap-view.options.winbar")
 local setup = require("dap-view.setup")
-local util = require("dap-view.util")
+local util_buf = require("dap-view.util.buffer")
+local term = require("dap-view.term.init")
 local state = require("dap-view.state")
 local settings = require("dap-view.options.settings")
 local globals = require("dap-view.globals")
@@ -37,17 +38,21 @@ M.open = function()
 
     state.bufnr = bufnr
 
-    local prev_buf = util.get_buf(globals.MAIN_BUF_NAME)
+    local prev_buf = require("dap-view.util").get_buf(globals.MAIN_BUF_NAME)
     if prev_buf then
         api.nvim_buf_delete(prev_buf, { force = true })
     end
 
     api.nvim_buf_set_name(bufnr, globals.MAIN_BUF_NAME)
 
+    local term_winnr = term.term_buf_win_init()
+
+    local config = setup.config
+
     local winnr = api.nvim_open_win(bufnr, false, {
-        split = "below",
-        win = 0,
-        height = 15,
+        split = "right",
+        win = term_winnr,
+        height = config.windows.height,
     })
 
     assert(winnr ~= 0, "Failed to create dap-view window")
@@ -57,15 +62,11 @@ M.open = function()
     settings.set_options()
     settings.set_keymaps()
 
-    state.current_section = state.current_section or setup.config.winbar.default_section
+    state.current_section = state.current_section or config.winbar.default_section
     winbar.set_winbar(state.current_section)
 
     -- Properly handle exiting the window
-    api.nvim_create_autocmd({ "BufDelete", "WinClosed" }, {
-        buffer = state.bufnr,
-        once = true,
-        callback = M.close,
-    })
+    util_buf.quit_buf_autocmd(state.bufnr, M.close)
 end
 
 return M

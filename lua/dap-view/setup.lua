@@ -10,6 +10,7 @@ M.setup = function(config)
             "Default section must be a defined section"
         )
     end
+
     M.config = vim.tbl_deep_extend("force", M.config, config or {})
 end
 

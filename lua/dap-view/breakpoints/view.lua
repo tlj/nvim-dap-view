@@ -9,7 +9,6 @@ local api = vim.api
 
 local M = {}
 
-
 ---@param row integer
 ---@param len_path integer
 ---@param len_lnum integer

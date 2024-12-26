@@ -1,6 +1,6 @@
 local dap = require("dap")
 local state = require("dap-view.state")
-local breakpoints = require("dap-view.breakpoints.buf_content")
+local breakpoints = require("dap-view.breakpoints.view")
 local actions = require("dap-view.actions")
 local exceptions = require("dap-view.exceptions")
 local term = require("dap-view.term.init")

@@ -8,14 +8,14 @@ local winbar_info = {
         desc = "[B]reakpoints",
         keymap = "B",
         action = function()
-            require("dap-view.breakpoints.buf_content").show()
+            require("dap-view.breakpoints.view").show()
         end,
     },
     exceptions = {
         desc = "[E]xceptions",
         keymap = "E",
         action = function()
-            require("dap-view.exceptions.buf_content").show()
+            require("dap-view.exceptions.view").show()
         end,
     },
     watches = {

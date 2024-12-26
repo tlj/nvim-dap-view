@@ -5,21 +5,21 @@ local M = {}
 
 local winbar_info = {
     breakpoints = {
-        desc = "[B]reakpoints",
+        desc = "Breakpoints [B]",
         keymap = "B",
         action = function()
             require("dap-view.breakpoints.view").show()
         end,
     },
     exceptions = {
-        desc = "[E]xceptions",
+        desc = "Exceptions [E]",
         keymap = "E",
         action = function()
             require("dap-view.exceptions.view").show()
         end,
     },
     watches = {
-        desc = "[W]atches",
+        desc = "Watches [W]",
         keymap = "W",
         action = function()
             print("foo")

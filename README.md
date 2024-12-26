@@ -7,6 +7,9 @@
 
 ![dap-view window](https://github.com/user-attachments/assets/cd901f79-b74a-4609-8dd8-7b4e7cd181ac)
 
+> [!WARNING]  
+> **Currently requires a nightly neovim version (0.11+)**
+
 ## Installation
 
 ### Via lazy.nvim

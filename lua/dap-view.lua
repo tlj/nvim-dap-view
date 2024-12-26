@@ -22,4 +22,8 @@ M.toggle = function()
     actions.toggle()
 end
 
+M.add_expr = function()
+    actions.add_expr()
+end
+
 return M

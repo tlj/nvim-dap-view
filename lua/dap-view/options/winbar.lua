@@ -22,7 +22,7 @@ local winbar_info = {
         desc = "Watches [W]",
         keymap = "W",
         action = function()
-            print("foo")
+            require("dap-view.watches.view").show()
         end,
     },
 }

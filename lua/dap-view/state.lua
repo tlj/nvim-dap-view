@@ -9,6 +9,7 @@
 ---@field term_winnr? integer
 ---@field current_section? SectionType
 ---@field exceptions_options? ExceptionsOption[]
+---@field watched_expressions string[]
 local M = {
     bufnr = nil,
     winnr = nil,
@@ -16,6 +17,7 @@ local M = {
     term_winnr = nil,
     current_section = nil,
     exceptions_options = nil,
+    watched_expressions = {},
 }
 
 return M

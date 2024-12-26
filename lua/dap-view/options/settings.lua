@@ -28,6 +28,18 @@ M.set_keymaps = function()
             require("dap-view.exceptions.actions")._toggle_exception_filter()
         end
     end, { buffer = state.bufnr })
+
+    vim.keymap.set("n", "i", function()
+        if state.current_section == "watches" then
+            vim.ui.input({ prompt = "Expression: " }, function(input)
+                if input and #input > 0 then
+                    table.insert(state.watched_expressions, input)
+
+                    require("dap-view.watches.view").show()
+                end
+            end)
+        end
+    end, { buffer = state.bufnr })
 end
 
 return M

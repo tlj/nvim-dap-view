@@ -5,6 +5,7 @@ local term = require("dap-view.term.init")
 local state = require("dap-view.state")
 local settings = require("dap-view.options.settings")
 local globals = require("dap-view.globals")
+local expr = require("dap-view.watches.vendor.expr")
 
 local api = vim.api
 
@@ -67,6 +68,14 @@ M.open = function()
 
     -- Properly handle exiting the window
     util_buf.quit_buf_autocmd(state.bufnr, M.close)
+end
+
+M.add_expr = function()
+    local expression = expr.eval_expression()
+
+    table.insert(state.watched_expressions, expression)
+
+    require("dap-view.watches.view").show()
 end
 
 return M

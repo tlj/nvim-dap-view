@@ -1,47 +1,26 @@
-# A Neovim Plugin Template
-
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ellisonleao/nvim-plugin-template/lint-test.yml?branch=main&style=for-the-badge)
 ![Lua](https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua)
 
-A template repository for Neovim plugins.
+# nvim-dap-view
 
-## Using it
+> minimalistic nvim-dap-ui alternative
 
-Via `gh`:
+![dap-view window](https://github.com/user-attachments/assets/cd901f79-b74a-4609-8dd8-7b4e7cd181ac)
 
+## Installation
+
+### Via lazy.nvim
+
+```lua
+return {
+    {
+        "igorlfs/nvim-dap-view",
+        dependencies = { "mfussenegger/nvim-dap" },
+        config = true,
+    },
+}
 ```
-$ gh repo create my-plugin -p ellisonleao/nvim-plugin-template
-```
 
-Via github web page:
+## Documentation
 
-Click on `Use this template`
-
-![](https://docs.github.com/assets/cb-36544/images/help/repository/use-this-template-button.png)
-
-## Features and structure
-
-- 100% Lua
-- Github actions for:
-  - running tests using [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) and [busted](https://olivinelabs.com/busted/)
-  - check for formatting errors (Stylua)
-  - vimdocs autogeneration from README.md file
-  - luarocks release (LUAROCKS_API_KEY secret configuration required)
-
-### Plugin structure
-
-```
-.
-├── lua
-│   ├── plugin_name
-│   │   └── module.lua
-│   └── plugin_name.lua
-├── Makefile
-├── plugin
-│   └── plugin_name.lua
-├── README.md
-├── tests
-│   ├── minimal_init.lua
-│   └── plugin_name
-│       └── plugin_name_spec.lua
-```
+TBA

@@ -3,13 +3,14 @@ local state = require("dap-view.state")
 local M = {}
 
 ---@param expr string
-M.add_watch_expr = function(expr)
+M.is_expr_valid = function(expr)
     -- Avoid duplicate expressions
-    local can_add = #expr > 0 and not vim.tbl_contains(state.watched_expressions, expr)
-    if can_add then
-        table.insert(state.watched_expressions, expr)
-    end
-    return can_add
+    return #expr > 0 and not vim.tbl_contains(state.watched_expressions, expr)
+end
+
+---@param expr string
+M.add_watch_expr = function(expr)
+    return M.is_expr_valid(expr) and table.insert(state.watched_expressions, expr) or false
 end
 
 ---@param line number

@@ -1,4 +1,6 @@
 local state = require("dap-view.state")
+local watches_view = require("dap-view.watches.view")
+local watches_actions = require("dap-view.watches.actions")
 
 local M = {}
 
@@ -33,9 +35,9 @@ M.set_keymaps = function()
         if state.current_section == "watches" then
             vim.ui.input({ prompt = "Expression: " }, function(input)
                 if input then
-                    require("dap-view.watches.actions").add_watch_expr(input)
+                    watches_actions.add_watch_expr(input)
 
-                    require("dap-view.watches.view").show()
+                    watches_view.show()
                 end
             end)
         end
@@ -45,9 +47,25 @@ M.set_keymaps = function()
         if state.current_section == "watches" then
             local line = vim.api.nvim_win_get_cursor(state.winnr)[1]
 
-            require("dap-view.watches.actions").remove_watch_expr(line)
+            watches_actions.remove_watch_expr(line)
 
-            require("dap-view.watches.view").show()
+            watches_view.show()
+        end
+    end, { buffer = state.bufnr })
+
+    vim.keymap.set("n", "e", function()
+        if state.current_section == "watches" then
+            local line = vim.api.nvim_win_get_cursor(state.winnr)[1]
+
+            local current_expr = state.watched_expressions[line]
+
+            vim.ui.input({ prompt = "Expression: ", default = current_expr }, function(input)
+                if input and watches_actions.is_expr_valid(input) then
+                    state.watched_expressions[line] = input
+
+                    watches_view.show()
+                end
+            end)
         end
     end, { buffer = state.bufnr })
 end

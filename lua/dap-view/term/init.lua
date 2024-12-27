@@ -38,6 +38,8 @@ M.term_buf_win_init = function()
             height = config.windows.height,
         })
 
+        assert(term_winnr ~= 0, "Failed to create dap-view terminal window")
+
         state.term_winnr = term_winnr
 
         require("dap-view.term.options").set_options()

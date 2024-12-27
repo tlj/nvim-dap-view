@@ -40,6 +40,16 @@ M.set_keymaps = function()
             end)
         end
     end, { buffer = state.bufnr })
+
+    vim.keymap.set("n", "d", function()
+        if state.current_section == "watches" then
+            local line = vim.api.nvim_win_get_cursor(state.winnr)[1]
+
+            require("dap-view.watches.actions").remove_watch_expr(line)
+
+            require("dap-view.watches.view").show()
+        end
+    end, { buffer = state.bufnr })
 end
 
 return M

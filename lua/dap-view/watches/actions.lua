@@ -12,4 +12,9 @@ M.add_watch_expr = function(expr)
     return can_add
 end
 
+---@param line number
+M.remove_watch_expr = function(line)
+    table.remove(state.watched_expressions, line)
+end
+
 return M

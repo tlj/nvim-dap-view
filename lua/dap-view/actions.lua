@@ -73,7 +73,7 @@ end
 M.add_expr = function()
     local expression = expr.eval_expression()
 
-    table.insert(state.watched_expressions, expression)
+    require("dap-view.watches.actions").add_watch_expr(expression)
 
     require("dap-view.watches.view").show()
 end

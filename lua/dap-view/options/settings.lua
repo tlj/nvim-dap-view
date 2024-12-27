@@ -32,8 +32,8 @@ M.set_keymaps = function()
     vim.keymap.set("n", "i", function()
         if state.current_section == "watches" then
             vim.ui.input({ prompt = "Expression: " }, function(input)
-                if input and #input > 0 then
-                    table.insert(state.watched_expressions, input)
+                if input then
+                    require("dap-view.watches.actions").add_watch_expr(input)
 
                     require("dap-view.watches.view").show()
                 end

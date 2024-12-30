@@ -26,7 +26,7 @@ dap.listeners.after.evaluate[SUBSCRIPTION_ID] = function()
     end
 end
 
-dap.listeners.after.event_continued[SUBSCRIPTION_ID] = function()
+dap.listeners.after.event_stopped[SUBSCRIPTION_ID] = function()
     if state.current_section == "watches" then
         for i, expr in ipairs(state.watched_expressions) do
             -- TODO update highlight group of expressions that changed

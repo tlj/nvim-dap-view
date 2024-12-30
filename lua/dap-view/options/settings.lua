@@ -36,8 +36,6 @@ M.set_keymaps = function()
             vim.ui.input({ prompt = "Expression: " }, function(input)
                 if input then
                     watches_actions.add_watch_expr(input)
-
-                    watches_view.show()
                 end
             end)
         end
@@ -48,6 +46,8 @@ M.set_keymaps = function()
             local line = vim.api.nvim_win_get_cursor(state.winnr)[1]
 
             watches_actions.remove_watch_expr(line)
+
+            watches_view.show()
         end
     end, { buffer = state.bufnr })
 

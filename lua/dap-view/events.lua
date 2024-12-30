@@ -2,6 +2,7 @@ local dap = require("dap")
 
 local state = require("dap-view.state")
 local breakpoints = require("dap-view.breakpoints.view")
+local watches = require("dap-view.watches.view")
 local actions = require("dap-view.actions")
 local exceptions = require("dap-view.exceptions")
 local term = require("dap-view.term.init")
@@ -15,6 +16,12 @@ end
 dap.listeners.after.setBreakpoints[SUBSCRIPTION_ID] = function()
     if state.current_section == "breakpoints" then
         breakpoints.show()
+    end
+end
+
+dap.listeners.after.evaluate[SUBSCRIPTION_ID] = function()
+    if state.current_section == "watches" then
+        watches.show()
     end
 end
 

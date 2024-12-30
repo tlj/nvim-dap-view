@@ -29,7 +29,6 @@ M.show = function()
         for i = 0, #state.watched_expressions - 1 do
             api.nvim_buf_set_extmark(state.bufnr, globals.NAMESPACE, i, 0, {
                 virt_lines = {
-                    -- TODO properly handle concurrency so we don't have to throw this 'Executing...'
                     { { state.expression_results[i + 1] or "Executing...", "Comment" } },
                 },
             })

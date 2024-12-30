@@ -12,7 +12,9 @@ dap.listeners.before.initialize[SUBSCRIPTION_ID] = function()
 end
 
 dap.listeners.after.setBreakpoints[SUBSCRIPTION_ID] = function()
-    breakpoints.show()
+    if state.current_section == "breakpoints" then
+        breakpoints.show()
+    end
 end
 
 dap.listeners.after.launch[SUBSCRIPTION_ID] = function()

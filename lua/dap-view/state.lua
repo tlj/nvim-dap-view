@@ -10,6 +10,7 @@
 ---@field current_section? SectionType
 ---@field exceptions_options? ExceptionsOption[]
 ---@field watched_expressions string[]
+---@field expression_results string[]
 local M = {
     bufnr = nil,
     winnr = nil,
@@ -18,6 +19,7 @@ local M = {
     current_section = nil,
     exceptions_options = nil,
     watched_expressions = {},
+    expression_results = {},
 }
 
 return M

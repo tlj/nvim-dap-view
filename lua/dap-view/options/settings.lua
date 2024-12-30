@@ -61,7 +61,7 @@ M.set_keymaps = function()
 
             vim.ui.input({ prompt = "Expression: ", default = current_expr }, function(input)
                 if input and watches_actions.is_expr_valid(input) then
-                    state.watched_expressions[line] = input
+                    watches_actions.edit_watch_expr(input, line)
 
                     watches_view.show()
                 end

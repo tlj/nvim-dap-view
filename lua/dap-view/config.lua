@@ -15,8 +15,8 @@ local M = {}
 ---@field windows WindowsConfig
 M.config = {
     winbar = {
-        sections = { "breakpoints", "exceptions", "watches" },
-        default_section = "breakpoints",
+        sections = { "watches", "exceptions", "breakpoints" },
+        default_section = "watches",
     },
     windows = {
         height = 15,

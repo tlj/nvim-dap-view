@@ -6,6 +6,7 @@ local watches = require("dap-view.watches.view")
 local actions = require("dap-view.actions")
 local exceptions = require("dap-view.exceptions")
 local term = require("dap-view.term.init")
+local eval = require("dap-view.watches.eval")
 
 local SUBSCRIPTION_ID = "dap-view"
 
@@ -22,6 +23,17 @@ end
 dap.listeners.after.evaluate[SUBSCRIPTION_ID] = function()
     if state.current_section == "watches" then
         watches.show()
+    end
+end
+
+dap.listeners.after.event_continued[SUBSCRIPTION_ID] = function()
+    if state.current_section == "watches" then
+        for i, expr in ipairs(state.watched_expressions) do
+            -- TODO update highlight group of expressions that changed
+            eval.eval_expr(expr, function(result)
+                state.expression_results[i] = result
+            end)
+        end
     end
 end
 

@@ -1,6 +1,7 @@
 local state = require("dap-view.state")
 local winbar = require("dap-view.options.winbar")
 local globals = require("dap-view.globals")
+local views = require("dap-view.views")
 
 local M = {}
 
@@ -14,7 +15,7 @@ M.show = function()
         api.nvim_buf_set_lines(state.bufnr, 0, -1, true, {})
         api.nvim_buf_clear_namespace(state.bufnr, globals.NAMESPACE, 0, -1)
 
-        if #state.watched_expressions == 0 then
+        if views.cleanup_view(#state.watched_expressions == 0, "No Expressions") then
             return
         end
 

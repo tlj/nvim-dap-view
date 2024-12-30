@@ -4,6 +4,7 @@ local globals = require("dap-view.globals")
 local vendor = require("dap-view.breakpoints.vendor")
 local extmarks = require("dap-view.exceptions.util.extmarks")
 local treesitter = require("dap-view.exceptions.util.treesitter")
+local views = require("dap-view.views")
 
 local api = vim.api
 
@@ -56,12 +57,13 @@ local populate_buf_with_breakpoints = function()
         -- Clear previous content
         api.nvim_buf_set_lines(state.bufnr, 0, -1, true, {})
 
-        -- TODO: decide between getting breakpoints
-        -- (A) by getting placed signs (nvim-dap approach)
-        -- (B) by listing breakpoints via QuickFix list (might have some issues if using the qflist for something else)
         local breakpoints = vendor.get()
 
         local line_count = 0
+
+        if views.cleanup_view(vim.tbl_isempty(breakpoints), "No Breakpoints") then
+            return
+        end
 
         for buf, buf_entries in pairs(breakpoints) do
             local filename = api.nvim_buf_get_name(buf)

@@ -2,8 +2,8 @@ local winbar = require("dap-view.options.winbar")
 local state = require("dap-view.state")
 local globals = require("dap-view.globals")
 local vendor = require("dap-view.breakpoints.vendor")
-local extmarks = require("dap-view.exceptions.util.extmarks")
-local treesitter = require("dap-view.exceptions.util.treesitter")
+local extmarks = require("dap-view.breakpoints.util.extmarks")
+local treesitter = require("dap-view.breakpoints.util.treesitter")
 local views = require("dap-view.views")
 
 local api = vim.api

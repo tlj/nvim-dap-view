@@ -29,8 +29,9 @@ end
 dap.listeners.after.event_stopped[SUBSCRIPTION_ID] = function()
     if state.current_section == "watches" then
         for i, expr in ipairs(state.watched_expressions) do
-            -- TODO update highlight group of expressions that changed
             eval.eval_expr(expr, function(result)
+                state.updated_evaluations[i] = state.expression_results[i]
+                    and state.expression_results[i] ~= result
                 state.expression_results[i] = result
             end)
         end
@@ -55,4 +56,10 @@ end
 
 dap.listeners.before.event_exited[SUBSCRIPTION_ID] = function()
     actions.close()
+end
+
+dap.listeners.after.event_terminated[SUBSCRIPTION_ID] = function()
+    for k in ipairs(state.expression_results) do
+        state.expression_results[k] = nil
+    end
 end

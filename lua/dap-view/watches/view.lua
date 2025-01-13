@@ -27,10 +27,12 @@ M.show = function()
             state.watched_expressions
         )
 
-        for i = 0, #state.watched_expressions - 1 do
-            api.nvim_buf_set_extmark(state.bufnr, globals.NAMESPACE, i, 0, {
+        for i = 1, #state.watched_expressions do
+            local hl_group = state.updated_evaluations[i] and "DiagnosticVirtualTextWarn"
+                or "Comment"
+            api.nvim_buf_set_extmark(state.bufnr, globals.NAMESPACE, i - 1, 0, {
                 virt_lines = {
-                    { { state.expression_results[i + 1] or "Executing...", "Comment" } },
+                    { { state.expression_results[i] or "Executing...", hl_group } },
                 },
             })
         end

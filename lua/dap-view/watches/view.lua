@@ -13,7 +13,6 @@ M.show = function()
     if state.bufnr then
         -- Clear previous content
         api.nvim_buf_set_lines(state.bufnr, 0, -1, true, {})
-        api.nvim_buf_clear_namespace(state.bufnr, globals.NAMESPACE, 0, -1)
 
         if views.cleanup_view(#state.watched_expressions == 0, "No Expressions") then
             return

@@ -29,7 +29,11 @@ M.show = function()
                     globals.NAMESPACE,
                     i - 1,
                     0,
-                    { end_col = 4, hl_group = opt.enabled and "DiagnosticOk" or "DiagnosticError" }
+                    {
+                        end_col = 4,
+                        hl_group = opt.enabled and "NvimDapViewExceptionFilterEnabled"
+                            or "NvimDapViewExceptionFilterDisabled",
+                    }
                 )
             end
         end

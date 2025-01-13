@@ -17,7 +17,7 @@ M.cleanup_view = function(cond, message)
             globals.NAMESPACE,
             0,
             0,
-            { end_col = #message, hl_group = "DapBreakpoint" }
+            { end_col = #message, hl_group = "NvimDapViewMissingData" }
         )
     else
         vim.wo[state.winnr].cursorline = true

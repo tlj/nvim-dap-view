@@ -23,7 +23,7 @@ local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
             globals.NAMESPACE,
             row,
             0,
-            { end_col = len_path, hl_group = "qfFileName" }
+            { end_col = len_path, hl_group = "NvimDapViewBreakpointFileName" }
         )
 
         api.nvim_buf_set_extmark(
@@ -31,7 +31,7 @@ local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
             globals.NAMESPACE,
             row,
             lnum_start,
-            { end_col = lnum_end, hl_group = "qfLineNr" }
+            { end_col = lnum_end, hl_group = "NvimDapViewBreakpointLineNumber" }
         )
 
         api.nvim_buf_set_extmark(
@@ -39,7 +39,7 @@ local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
             globals.NAMESPACE,
             row,
             lnum_start - 1,
-            { end_col = lnum_start, hl_group = "Comment" }
+            { end_col = lnum_start, hl_group = "NvimDapViewBreakpointSeparator" }
         )
 
         api.nvim_buf_set_extmark(
@@ -47,7 +47,7 @@ local highlight_file_name_and_line_number = function(row, len_path, len_lnum)
             globals.NAMESPACE,
             row,
             lnum_end,
-            { end_col = lnum_end + 1, hl_group = "Comment" }
+            { end_col = lnum_end + 1, hl_group = "NvimDapViewBreakpointSeparator" }
         )
     end
 end

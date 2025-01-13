@@ -19,13 +19,11 @@ M._toggle_exception_filter = function()
 
     api.nvim_buf_set_lines(state.bufnr, cur_row - 1, cur_row, false, { content })
 
-    api.nvim_buf_set_extmark(
-        state.bufnr,
-        globals.NAMESPACE,
-        cur_row - 1,
-        0,
-        { end_col = 4, hl_group = curent_option.enabled and "DiagnosticOk" or "DiagnosticError" }
-    )
+    api.nvim_buf_set_extmark(state.bufnr, globals.NAMESPACE, cur_row - 1, 0, {
+        end_col = 4,
+        hl_group = curent_option.enabled and "NvimDapViewExceptionFilterEnabled"
+            or "NvimDapViewExceptionFilterDisabled",
+    })
 
     exceptions.update_exception_breakpoints_filters()
 end

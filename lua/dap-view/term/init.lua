@@ -34,7 +34,7 @@ M.term_buf_win_init = function()
         local config = setup.config
         local term_winnr = api.nvim_open_win(state.term_bufnr, false, {
             split = "below",
-            win = 0,
+            win = -1,
             height = config.windows.height,
         })
 

@@ -27,7 +27,7 @@ local winbar_info = {
     },
 }
 
-local set_winbar_action_keymaps = function()
+M.set_winbar_action_keymaps = function()
     if state.bufnr then
         for _, value in pairs(winbar_info) do
             vim.keymap.set("n", value.keymap, function()
@@ -66,15 +66,21 @@ local set_winbar_opt = function(selected_section)
 end
 
 ---@param selected_section? SectionType
-M.set_winbar = function(selected_section)
-    set_winbar_action_keymaps()
+M.show_content = function(selected_section)
     winbar_info[selected_section].action()
 end
 
 ---@param section_name SectionType
-M.update_winbar = function(section_name)
+local _update_winbar = function(section_name)
     state.current_section = section_name
     set_winbar_opt(state.current_section)
+end
+
+---@param section_name SectionType
+M.update_winbar = function(section_name)
+    if setup.config.winbar.show then
+        _update_winbar(section_name)
+    end
 end
 
 return M

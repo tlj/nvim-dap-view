@@ -64,7 +64,9 @@ M.open = function()
     settings.set_keymaps()
 
     state.current_section = state.current_section or config.winbar.default_section
-    winbar.set_winbar(state.current_section)
+
+    winbar.set_winbar_action_keymaps()
+    winbar.show_content(state.current_section)
 
     -- Properly handle exiting the window
     util_buf.quit_buf_autocmd(state.bufnr, M.close)

@@ -4,6 +4,7 @@ local M = {}
 ---@class WinbarConfig
 ---@field sections SectionType[]
 ---@field default_section SectionType
+---@field show boolean
 
 ---@class WindowsConfig
 ---@field height integer
@@ -15,6 +16,7 @@ local M = {}
 ---@field windows WindowsConfig
 M.config = {
     winbar = {
+        show = true,
         sections = { "watches", "exceptions", "breakpoints" },
         default_section = "watches",
     },

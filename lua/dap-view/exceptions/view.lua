@@ -24,17 +24,11 @@ M.show = function()
             api.nvim_buf_set_lines(state.bufnr, 0, -1, false, content)
 
             for i, opt in ipairs(state.exceptions_options) do
-                api.nvim_buf_set_extmark(
-                    state.bufnr,
-                    globals.NAMESPACE,
-                    i - 1,
-                    0,
-                    {
-                        end_col = 4,
-                        hl_group = opt.enabled and "NvimDapViewExceptionFilterEnabled"
-                            or "NvimDapViewExceptionFilterDisabled",
-                    }
-                )
+                api.nvim_buf_set_extmark(state.bufnr, globals.NAMESPACE, i - 1, 0, {
+                    end_col = 4,
+                    hl_group = opt.enabled and "NvimDapViewExceptionFilterEnabled"
+                        or "NvimDapViewExceptionFilterDisabled",
+                })
             end
         end
     end

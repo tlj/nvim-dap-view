@@ -8,21 +8,27 @@ local winbar_info = {
         desc = "Breakpoints [B]",
         keymap = "B",
         action = function()
-            require("dap-view.breakpoints.view").show()
+            if vim.tbl_contains(setup.config.winbar.sections, "breakpoints") then
+                require("dap-view.breakpoints.view").show()
+            end
         end,
     },
     exceptions = {
         desc = "Exceptions [E]",
         keymap = "E",
         action = function()
-            require("dap-view.exceptions.view").show()
+            if vim.tbl_contains(setup.config.winbar.sections, "exceptions") then
+                require("dap-view.exceptions.view").show()
+            end
         end,
     },
     watches = {
         desc = "Watches [W]",
         keymap = "W",
         action = function()
-            require("dap-view.watches.view").show()
+            if vim.tbl_contains(setup.config.winbar.sections, "watches") then
+                require("dap-view.watches.view").show()
+            end
         end,
     },
 }

@@ -30,9 +30,15 @@ TBA
 
 ## Acknowledgements
 
-- Code to inject treesitter highlights into line is taken from [`quicker.nvim`](https://github.com/stevearc/quicker.nvim);
+- Code to inject treesitter highlights into line is taken from
+[`quicker.nvim`](https://github.com/stevearc/quicker.nvim);
 - Some snippets are directly extracted from `nvim-dap`:
-    - Currently, there's no API to exctract breakpoint information (see [issue](https://github.com/mfussenegger/nvim-dap/issues/1388)), so we resort to using nvim-dap internal mechanism, that tracks extmarks;
-    - The magic to extract expressions from visual mode is also a courtesy of `nvim-dap`.
-- [lucaSartore](https://github.com/lucaSartore/nvim-dap-exception-breakpoints) for the inspiration for handling breakpoint exceptions;
-- [Kulala](https://github.com/mistweaverco/kulala.nvim) for the creative usage of neovim's winbar to handle multiple views.
+    - Currently, there's no API to exctract breakpoint information (see
+    [issue](https://github.com/mfussenegger/nvim-dap/issues/1388)), so we
+    resort to using nvim-dap internal mechanism, that tracks extmarks;
+    - The magic to extract expressions from visual mode is also a courtesy of
+    `nvim-dap`.
+- [lucaSartore](https://github.com/lucaSartore/nvim-dap-exception-breakpoints)
+for the inspiration for handling breakpoint exceptions;
+- [Kulala](https://github.com/mistweaverco/kulala.nvim) for the creative usage
+of neovim's winbar to handle multiple views.

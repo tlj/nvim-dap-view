@@ -56,14 +56,6 @@ dap.listeners.after.initialize[SUBSCRIPTION_ID] = function(session, _)
         :totable()
 end
 
-dap.listeners.before.event_terminated[SUBSCRIPTION_ID] = function()
-    actions.close()
-end
-
-dap.listeners.before.event_exited[SUBSCRIPTION_ID] = function()
-    actions.close()
-end
-
 dap.listeners.after.event_terminated[SUBSCRIPTION_ID] = function()
     for k in ipairs(state.expression_results) do
         state.expression_results[k] = nil

@@ -1,4 +1,4 @@
-*nvim-dap-view.txt*      For Neovim >= 0.10.0     Last change: 2025 January 14
+*nvim-dap-view.txt*      For Neovim >= 0.10.0     Last change: 2025 January 15
 
 ==============================================================================
 Table of Contents                            *nvim-dap-view-table-of-contents*

@@ -31,7 +31,7 @@ M.eval_expr = function(expr, callback)
                 table.insert(enhanced_expr_result, tostring(err))
             end
 
-            if var_ref_result then
+            if var_ref_result and not var_ref_err then
                 for _, k in pairs(var_ref_result.variables) do
                     table.insert(enhanced_expr_result, "\t" .. k.name .. " = " .. k.value)
                 end

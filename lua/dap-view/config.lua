@@ -21,7 +21,7 @@ M.config = {
         default_section = "watches",
     },
     windows = {
-        height = 15,
+        height = 12,
     },
 }
 

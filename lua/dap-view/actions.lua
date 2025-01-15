@@ -1,3 +1,5 @@
+local dap = require("dap")
+
 local winbar = require("dap-view.options.winbar")
 local setup = require("dap-view.setup")
 local util_buf = require("dap-view.util.buffer")
@@ -20,6 +22,9 @@ M.toggle = function()
 end
 
 M.close = function()
+    if not dap.session() then
+        term.close_term_buf_win()
+    end
     if state.winnr then
         api.nvim_win_close(state.winnr, true)
         state.winnr = nil

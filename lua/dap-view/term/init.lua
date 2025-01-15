@@ -8,7 +8,7 @@ local api = vim.api
 
 local M = {}
 
-local close_term_buf_win = function()
+M.close_term_buf_win = function()
     if state.term_winnr then
         api.nvim_win_close(state.term_winnr, true)
         state.term_winnr = nil
@@ -44,7 +44,7 @@ M.term_buf_win_init = function()
 
         require("dap-view.term.options").set_options()
 
-        util_buf.quit_buf_autocmd(state.term_bufnr, close_term_buf_win)
+        util_buf.quit_buf_autocmd(state.term_bufnr, M.close_term_buf_win)
 
         dap.defaults.fallback.terminal_win_cmd = function()
             return state.term_bufnr, state.term_winnr

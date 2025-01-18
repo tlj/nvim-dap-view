@@ -33,7 +33,7 @@ For a better experience, consider adding `nvim-dap-view` **as a dependency** for
 
 By default, when launching a session, `nvim-dap`'s terminal window takes half
 the screen. As a saner default, `nvim-dap-view` hijacks the terminal window
-(even if not invoked), making the split take only screen 12 lines.
+(even if not invoked), making the split take only 12 (configurable) screen lines.
 
 </details>
 
@@ -56,7 +56,7 @@ return {
 The plugin provides 3 "views" that share the same window (so there's clutter)
 
 - Watches view
-    - Shows a list of user defined expressions
+    - Shows a list of (user defined) expressions, that are evaluated by the debug adapter
     - Add, edit and delete expressions from the watch list
         - Including adding the variable under the cursor
 - Exceptions view
@@ -74,7 +74,7 @@ The plugin provides 3 "views" that share the same window (so there's clutter)
 ### Configuration
 
 <details>
-    <summary>Default Options</summary>
+    <summary>Default options</summary>
 
 ```lua
 return {

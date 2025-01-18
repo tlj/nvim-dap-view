@@ -5,7 +5,9 @@
 
 > minimalistic [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) alternative
 
-![nvim-dap-view window](https://github.com/user-attachments/assets/cd901f79-b74a-4609-8dd8-7b4e7cd181ac)
+![watches view](https://github.com/user-attachments/assets/c6838700-95ed-4b39-9ab5-e0ed0e753995)
+![exceptions view](https://github.com/user-attachments/assets/86edd829-d9d8-4fae-b0c0-8b79339b0c33)
+![breakpoints view](https://github.com/user-attachments/assets/b8c23809-2f23-4a39-8aef-b880f2b3eef9)
 
 > [!WARNING]  
 > **Currently requires a neovim nightly (0.11+)**

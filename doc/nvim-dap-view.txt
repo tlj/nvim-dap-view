@@ -45,7 +45,7 @@ Why? ~
 
 By default, when launching a session, `nvim-dap`’s terminal window takes half
 the screen. As a saner default, `nvim-dap-view` hijacks the terminal window
-(even if not invoked), making the split take only screen 12 (configurable)
+(even if not invoked), making the split take only 12 (configurable) screen
 lines.
 
 >lua

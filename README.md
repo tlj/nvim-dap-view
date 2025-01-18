@@ -81,7 +81,7 @@ return {
     winbar = {
         show = true,
         sections = { "watches", "exceptions", "breakpoints" },
-        -- Must be one of the sessions declared above
+        -- Must be one of the sections declared above
         default_section = "watches",
     },
     windows = {

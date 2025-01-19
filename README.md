@@ -43,7 +43,7 @@ return {
     {
         "mfussenegger/nvim-dap",
         dependencies = {
-            { "igorlfs/dap-view", opts = {} },
+            { "igorlfs/nvim-dap-view", opts = {} },
             ...,
         },
         ...,

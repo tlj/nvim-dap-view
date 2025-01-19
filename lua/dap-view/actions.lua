@@ -25,7 +25,7 @@ M.close = function()
     if not dap.session() then
         term.close_term_buf_win()
     end
-    if state.winnr then
+    if state.winnr and api.nvim_win_is_valid(state.winnr) then
         api.nvim_win_close(state.winnr, true)
         state.winnr = nil
     end

@@ -8,6 +8,7 @@ local M = {}
 
 ---@class WindowsConfig
 ---@field height integer
+---@field width number|integer Width of the window in either characters or percentage (as decimal: 0.75)
 
 --- @alias SectionType '"breakpoints"' | '"exceptions"' | '"watches"' | '"repl"'
 
@@ -22,6 +23,7 @@ M.config = {
     },
     windows = {
         height = 12,
+        width = 0.5,
     },
 }
 

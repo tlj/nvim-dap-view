@@ -8,7 +8,7 @@ local M = {}
 
 ---@class WindowsConfig
 ---@field height integer
----@field width number|integer Width of the window in either characters or percentage (as decimal: 0.75)
+---@field width number|integer Width of the window in either characters or percentage (as decimal: 0.75). Window size of 1 means 100% width, which will hide the terminal window.
 
 --- @alias SectionType '"breakpoints"' | '"exceptions"' | '"watches"' | '"repl"'
 

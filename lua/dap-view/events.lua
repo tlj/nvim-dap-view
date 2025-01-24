@@ -48,6 +48,7 @@ dap.listeners.after.launch[SUBSCRIPTION_ID] = function()
 end
 
 dap.listeners.after.initialize[SUBSCRIPTION_ID] = function(session, _)
+    state.current_session_id = session.id
     if session.capabilities.exceptionBreakpointFilters then
         state.exceptions_options = vim.iter(session.capabilities.exceptionBreakpointFilters)
             :map(function(filter)
@@ -58,6 +59,7 @@ dap.listeners.after.initialize[SUBSCRIPTION_ID] = function(session, _)
 end
 
 dap.listeners.after.event_terminated[SUBSCRIPTION_ID] = function()
+    state.current_session_id = nil
     for k in ipairs(state.expression_results) do
         state.expression_results[k] = nil
     end

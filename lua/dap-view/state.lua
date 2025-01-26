@@ -7,7 +7,6 @@
 ---@field winnr? integer
 ---@field term_bufnr? integer
 ---@field term_winnr? integer
----@field current_session_id? integer
 ---@field current_section? SectionType
 ---@field exceptions_options? ExceptionsOption[]
 ---@field watched_expressions string[]

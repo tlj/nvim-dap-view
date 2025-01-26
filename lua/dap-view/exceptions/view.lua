@@ -1,3 +1,5 @@
+local dap = require("dap")
+
 local winbar = require("dap-view.options.winbar")
 local globals = require("dap-view.globals")
 local state = require("dap-view.state")
@@ -15,7 +17,7 @@ M.show = function()
         api.nvim_buf_set_lines(state.bufnr, 0, -1, true, {})
 
         if
-            views.cleanup_view(state.current_session_id == nil, "No active debug session.")
+            views.cleanup_view(not dap.session(), "No active session.")
             or views.cleanup_view(
                 state.exceptions_options == nil,
                 "Not supported by debug adapter."

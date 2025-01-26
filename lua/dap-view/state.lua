@@ -14,7 +14,6 @@
 ---@field expression_results string[]
 ---@field updated_evaluations boolean[]
 local M = {
-    current_session_id = nil,
     bufnr = nil,
     winnr = nil,
     term_bufnr = nil,

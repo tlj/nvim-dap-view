@@ -60,19 +60,6 @@ local function get_window_size(config)
     return win_width
 end
 
--- If the window should be 100% width, we have already hidden
--- the terminal and should split below. If the terminal window
--- is open we should split to the right of it.
-local function get_window_split(config)
-    local split = "right"
-
-    if config.windows.width == 1 then
-        split = "below"
-    end
-
-    return split
-end
-
 M.open = function()
     M.close()
 
@@ -94,7 +81,7 @@ M.open = function()
     local config = setup.config
 
     local winnr = api.nvim_open_win(bufnr, false, {
-        split = get_window_split(config),
+        split = config.windows.position,
         win = term_winnr,
         height = config.windows.height,
         width = get_window_size(config),
